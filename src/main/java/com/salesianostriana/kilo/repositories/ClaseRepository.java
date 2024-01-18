@@ -12,20 +12,20 @@ import java.util.List;
 @Repository
 public interface ClaseRepository extends JpaRepository<Clase, Long> {
 
-    @Query("""
+    @Query(value = """
                SELECT SUM (det.cantidadKg) 
                FROM Clase c
                JOIN Aportacion a ON c.id = a.clase
                JOIN DetalleAportacion det ON a.id = det.aportacion
                JOIN TipoAlimento ta ON  det.tipoAlimento = ta.id
                WHERE c.id = :idClase
-            """)
+            """, nativeQuery = true)
     Double findKilos(@Param("idClase") Long idCLase);
 
 
 
     @Query("SELECT new com.salesianostriana.kilo.dtos.ranking.RankQueryResponseDTO(a.clase.id, a.clase.nombre, SUM(d.cantidadKg) AS cantidadPorAp) " +
-            "FROM Aportacion a JOIN DetalleAportacion d ON a.id = d.aportacion GROUP BY a.id")
+            "FROM Aportacion a JOIN DetalleAportacion d ON a.id = d.aportacion.id GROUP BY a.id")
     public List<RankQueryResponseDTO> findClasesOrderedByRank();
 
 

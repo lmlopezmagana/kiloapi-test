@@ -29,6 +29,7 @@ public class KilosDisponiblesDTO {
     private double cantidadKg;
 
     @JsonView({View.KilosDisponiblesView.KilosDisponiblesDetailsView.class})
+    @Builder.Default
     private List<DetallesAportacionResponseDTO> listaDetallesConKg = new ArrayList<>();
 
 
