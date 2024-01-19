@@ -1,6 +1,12 @@
-# KiloAPI
+# KiloAPI Test
 
-API Rest programada en Java con el framework [Spring boot](https://spring.io/projects/spring-boot), con base de datos en memoria h2. Documentación hecha con [OpenApi 3.0 y visualizada con Swagger-ui](https://swagger.io/specification/). Este repositorio consta también de una colección de [POSTMAN](https://www.postman.com/downloads/) para practicar sus endpoints.
+Originalmente, este proyecto es una API Rest programada en Java con el framework [Spring boot](https://spring.io/projects/spring-boot), con base de datos en memoria h2. Documentación hecha con [OpenApi 3.0 y visualizada con Swagger-ui](https://swagger.io/specification/). Este repositorio consta también de una colección de [POSTMAN](https://www.postman.com/downloads/) para practicar sus endpoints.
+
+Este proyecto se ha modificado para
+
+- Adaptarlo a Spring Boot 3
+- Ofrecer dos perfiles para poder conectar bien a H2, bien a Postgresql (para este último, se ofrece un script de docker-compose)
+
 
 ## URL base
 
@@ -122,3 +128,6 @@ GET http://localhost:8080/caja/{id} -> Se obtienen los detalles de una caja exis
 
 - [Carlos Jesús Durbán Viloca](https://github.com/Durbanban)
 
+### Modificaciones
+
+- Luis Miguel López Magaña
