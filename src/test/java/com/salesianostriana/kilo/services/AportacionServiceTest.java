@@ -43,12 +43,14 @@ class AportacionServiceTest {
     @Test
     void editAportacionOK() {
 
-        Long idAportacionEdit = 1L;
-        Long idLineaEdit = 1L;
-        double nuevosKilos = 15;
+        Clase c1 = Clase.builder()
+                .id(1L)
+                .build();
 
         Aportacion a1 = Aportacion.builder()
                 .id(1L)
+                .fecha(LocalDate.now())
+                .clase(c1)
                 .build();
 
         KilosDisponibles kd1 = KilosDisponibles.builder()
@@ -63,9 +65,15 @@ class AportacionServiceTest {
                 .detalleAportaciones(new ArrayList<>())
                 .build();
 
+        kd1.setTipoAlimento(ta1);
+
+        DetalleAportacionPK dapk1 = new DetalleAportacionPK(1L, a1.getId());
+
         DetalleAportacion da1 = DetalleAportacion.builder()
                 .cantidadKg(5.0)
                 .tipoAlimento(ta1)
+                .detalleAportacionPK(dapk1)
+                .aportacion(a1)
                 .build();
 
         List<DetalleAportacion> daList = new ArrayList<>();
@@ -75,14 +83,20 @@ class AportacionServiceTest {
         ta1.setDetalleAportaciones(daList);
         a1.setDetalleAportaciones(daList);
 
+        Mockito.when(tipoAlimentoSaveService.save(ta1))
+                .thenReturn(ta1);
+
+        Mockito.when(aportacionRepository.save(a1)).thenReturn(a1);
+
         //Esto te dice que cuando busques por id, te devuelva un optional de la aportación
         //que tenga ese id asignada.
         Mockito.when(aportacionRepository.findById(a1.getId())).thenReturn(Optional.of(a1));
 
-        Optional<Aportacion> resultadoEsperado = aportacionService.editAportacion(
-                idAportacionEdit, idLineaEdit, nuevosKilos);
 
-        assertEquals(nuevosKilos, resultadoEsperado.get().getDetalleAportaciones().get(0).getCantidadKg());
+        Optional<Aportacion> resultadoEsperado = aportacionService.editAportacion(
+                1L, 1L, 40);
+
+        assertEquals(40, resultadoEsperado.get().getDetalleAportaciones().get(0).getCantidadKg());
     }
 
     @Test

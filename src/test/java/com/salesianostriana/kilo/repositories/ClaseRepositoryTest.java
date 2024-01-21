@@ -1,5 +1,6 @@
 package com.salesianostriana.kilo.repositories;
 
+import com.salesianostriana.kilo.dtos.ranking.RankQueryResponseDTO;
 import com.salesianostriana.kilo.entities.Clase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,5 +43,13 @@ class ClaseRepositoryTest {
     void findKilos() {
         Double kilosClase1 = claseRepository.findKilos(1L);
         assertEquals(27.7, kilosClase1);
+    }
+
+
+    @Test
+    void findClasesOrderedByRank() {
+        List<RankQueryResponseDTO> lista1 = claseRepository.findClasesOrderedByRank();
+
+        assertTrue(lista1.get(0).getSumaKilos() > lista1.get(1).getSumaKilos());
     }
 }
