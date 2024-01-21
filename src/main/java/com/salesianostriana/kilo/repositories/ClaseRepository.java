@@ -13,11 +13,11 @@ import java.util.List;
 public interface ClaseRepository extends JpaRepository<Clase, Long> {
 
     @Query(value = """
-               SELECT SUM (det.cantidadKg) 
-               FROM Clase c
-               JOIN Aportacion a ON c.id = a.clase
-               JOIN DetalleAportacion det ON a.id = det.aportacion
-               JOIN TipoAlimento ta ON  det.tipoAlimento = ta.id
+               SELECT SUM(det.cantidad_kg)
+               FROM clase c
+               JOIN aportacion a ON c.id = a.clase_id
+               JOIN detalle_aportacion det ON a.id = det.aportacion_id
+               JOIN tipo_alimento ta ON det.tipo_alimento = ta.id
                WHERE c.id = :idClase
             """, nativeQuery = true)
     Double findKilos(@Param("idClase") Long idCLase);
