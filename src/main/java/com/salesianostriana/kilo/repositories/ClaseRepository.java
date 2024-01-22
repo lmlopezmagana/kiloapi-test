@@ -25,7 +25,7 @@ public interface ClaseRepository extends JpaRepository<Clase, Long> {
 
 
     @Query("SELECT new com.salesianostriana.kilo.dtos.ranking.RankQueryResponseDTO(a.clase.id, a.clase.nombre, SUM(d.cantidadKg) AS cantidadPorAp) " +
-            "FROM Aportacion a JOIN DetalleAportacion d ON a.id = d.aportacion.id GROUP BY a.id")
+            "FROM Aportacion a JOIN DetalleAportacion d ON a.id = d.aportacion.id GROUP BY a.clase.id, a.clase.nombre ORDER BY SUM(d.cantidadKg) DESC")
     public List<RankQueryResponseDTO> findClasesOrderedByRank();
 
 

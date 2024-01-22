@@ -96,6 +96,7 @@ class AportacionServiceTest {
         Optional<Aportacion> resultadoEsperado = aportacionService.editAportacion(
                 1L, 1L, 40);
 
+
         assertEquals(40, resultadoEsperado.get().getDetalleAportaciones().get(0).getCantidadKg());
     }
 

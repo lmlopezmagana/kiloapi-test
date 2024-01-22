@@ -51,5 +51,7 @@ class ClaseRepositoryTest {
         List<RankQueryResponseDTO> lista1 = claseRepository.findClasesOrderedByRank();
 
         assertTrue(lista1.get(0).getSumaKilos() > lista1.get(1).getSumaKilos());
+        assertTrue(lista1.get(1).getSumaKilos() > lista1.get(2).getSumaKilos());
+
     }
 }
