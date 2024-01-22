@@ -41,7 +41,9 @@ public class AportacionesReponseDTO {
     private String clase;
 
     @JsonView({View.AportacionView.AportacionDetallesView.class})
+    @Builder.Default
     private List<DetallesAportacionResponseDTO> detallesAportacion = new ArrayList<>();
+
     @JsonView({View.AportacionView.AllAportacionView.class})
     private double cantidadTotalKg;
 
@@ -58,6 +60,7 @@ public class AportacionesReponseDTO {
     private Long idClase;
 
     @JsonView(View.AportacionView.AportacionRequestView.class)
+    @Builder.Default
     private List<LineaDTO> lineas = new ArrayList<>();
 
 

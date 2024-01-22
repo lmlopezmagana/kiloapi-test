@@ -3,7 +3,7 @@ package com.salesianostriana.kilo.entities;
 import com.salesianostriana.kilo.entities.keys.TienePK;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +26,7 @@ public class Tiene {
     }
 
     @EmbeddedId
+    @Builder.Default
     private TienePK tienePK = new TienePK();
 
     @ManyToOne

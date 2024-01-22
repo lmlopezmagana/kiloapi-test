@@ -46,7 +46,7 @@ public interface AportacionRepository extends JpaRepository<Aportacion, Long> {
 
     @Query("""            
             SELECT d
-            FROM DetalleAportacion d JOIN TipoAlimento t ON d.tipoAlimento = t.id JOIN KilosDisponibles k ON t.id = k.tipoAlimento
+            FROM DetalleAportacion d JOIN TipoAlimento t ON d.tipoAlimento.id = t.id JOIN KilosDisponibles k ON t.id = k.tipoAlimento.id
             WHERE d.cantidadKg <= k.cantidadDisponible
             """)
     List<DetalleAportacion> findDetallesBorrables();

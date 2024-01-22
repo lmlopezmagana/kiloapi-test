@@ -4,7 +4,7 @@ package com.salesianostriana.kilo.entities;
 import com.salesianostriana.kilo.entities.keys.DetalleAportacionPK;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
